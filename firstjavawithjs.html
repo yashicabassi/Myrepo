@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personality Quiz</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .question {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input[type="radio"] {
+    margin-right: 5px;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .result {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Personality Quiz</h1>
+  <form id="quizForm">
+    <div class="question">
+      <p>Q1. What is your favorite color?</p>
+      <label><input type="radio" name="q1" value="red">Red</label>
+      <label><input type="radio" name="q1" value="blue">Blue</label>
+      <label><input type="radio" name="q1" value="green">Green</label>
+    </div>
+    <div class="question">
+      <p>Q2. What is your favorite activity?</p>
+      <label><input type="radio" name="q2" value="reading">Reading</label>
+      <label><input type="radio" name="q2" value="hiking">Hiking</label>
+      <label><input type="radio" name="q2" value="cooking">Cooking</label>
+    </div>
+    <div class="question">
+      <p>Q3. How do you handle stress?</p>
+      <label><input type="radio" name="q3" value="meditation">Meditation</label>
+      <label><input type="radio" name="q3" value="exercise">Exercise</label>
+      <label><input type="radio" name="q3" value="sleep">Sleep</label>
+    </div>
+    <button type="submit">Submit</button>
+    <div class="result" id="result"></div>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('quizForm');
+  const resultDiv = document.getElementById('result');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const q1 = document.querySelector('input[name="q1"]:checked').value;
+    const q2 = document.querySelector('input[name="q2"]:checked').value;
+    const q3 = document.querySelector('input[name="q3"]:checked').value;
+    
+    let personalityType = '';
+    
+    if (q1 === 'red' && q2 === 'reading' && q3 === 'meditation') {
+      personalityType = 'Type A';
+    } else if (q1 === 'blue' && q2 === 'hiking' && q3 === 'exercise') {
+      personalityType = 'Type B';
+    } else if (q1 === 'green' && q2 === 'cooking' && q3 === 'sleep') {
+      personalityType = 'Type C';
+    } else {
+      personalityType = 'Mixed';
+    }
+
+    resultDiv.textContent = `Your personality type is: ${personalityType}`;
+  });
+</script>
+</body>
+</html>
